@@ -19,11 +19,8 @@ const columns = [
   {
     title: "Branches",
     items: [
-      { href: "#branches", label: "Ghod Dod Road" },
-      { href: "#branches", label: "Ring Road" },
-      { href: "#branches", label: "Sachin" },
-      { href: "#branches", label: "Parvat Patiya" },
-      { href: "#branches", label: "Hoziwala Industries" },
+      { href: "#branches", label: "Main Office — Westfield Complex" },
+      { href: "#branches", label: "Sachin Office" },
     ],
   },
   {
@@ -62,23 +59,23 @@ export function Footer() {
                 info@manvifintech.com
               </a>
               <a
-                href="tel:+919876543210"
+                href="tel:+919016634710"
                 className="flex items-center gap-3 text-ink-300 hover:text-white transition"
               >
                 <Phone size={16} className="text-accent-400" />
-                +91 98765 43210
+                +91 90166 34710
               </a>
               <a
-                href="https://maps.google.com/?q=Ring+Road+Surat+Gujarat"
+                href="https://maps.google.com/?q=Westfield+Complex+Sankalp+Shopping+Center+Surat"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-start gap-3 text-ink-400 hover:text-white transition"
               >
                 <MapPin size={16} className="text-accent-400 mt-0.5 shrink-0" />
                 <span>
-                  Main Office — Ghod Dod Road,
+                  Main Office — L.G. 44-45, Westfield Complex,
                   <br />
-                  Surat, Gujarat, India
+                  Opp. Sankalp Shopping Center, Surat, Gujarat
                 </span>
               </a>
             </div>

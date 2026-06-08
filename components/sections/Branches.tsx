@@ -16,37 +16,19 @@ type Branch = {
 
 const BRANCHES: Branch[] = [
   {
-    name: "Ghod Dod Road",
-    area: "Ghod Dod Road, Surat, Gujarat",
+    name: "Main Office",
+    area: "L.G. 44-45, Westfield Complex, Opp. Sankalp Shopping Center, Surat, Gujarat",
     note: "Main office",
-    phone: "+91 98765 43210",
+    phone: "+91 90166 34710",
     hours: "Mon–Sat · 10:00 – 19:00",
-    map: "https://maps.google.com/?q=Ghod+Dod+Road+Surat",
+    map: "https://maps.google.com/?q=Westfield+Complex+Sankalp+Shopping+Center+Surat",
     main: true,
   },
   {
-    name: "Ring Road",
-    area: "Ring Road, Surat",
-    note: "Retail & home loans",
-    map: "https://maps.google.com/?q=Ring+Road+Surat",
-  },
-  {
-    name: "Sachin",
-    area: "Sachin GIDC, Surat",
+    name: "Sachin Office",
+    area: "First Floor, Plot No. 1084, Road No. 4, Nr. Surat People's Bank, GIDC Sachin, Surat",
     note: "Industrial loans desk",
-    map: "https://maps.google.com/?q=Sachin+GIDC+Surat",
-  },
-  {
-    name: "Parvat Patiya",
-    area: "Parvat Patiya, Surat",
-    note: "Retail branch",
-    map: "https://maps.google.com/?q=Parvat+Patiya+Surat",
-  },
-  {
-    name: "Hoziwala Industries",
-    area: "Hoziwala Estate, Surat",
-    note: "MSME desk",
-    map: "https://maps.google.com/?q=Hoziwala+Industries+Surat",
+    map: "https://maps.google.com/?q=Plot+1084+Road+4+GIDC+Sachin+Surat",
   },
 ];
 
@@ -65,10 +47,10 @@ export function Branches() {
               <span className="text-gradient">across Surat</span>
             </>
           }
-          description="Five branches, one team. Walk in for a face-to-face consultation — or call ahead and we'll have an expert ready."
+          description="Two offices, one team. Walk in for a face-to-face consultation — or call ahead and we'll have an expert ready."
         />
 
-        <div className="mt-10 grid gap-4 sm:mt-14 lg:grid-cols-[1.15fr_1fr] lg:gap-6">
+        <div className="mt-10 grid gap-4 sm:mt-14 lg:grid-cols-2 lg:gap-6">
           {/* Featured main-office card */}
           <a
             href={MAIN.map}
@@ -85,7 +67,7 @@ export function Branches() {
                 Main office
               </span>
               <h3 className="mt-5 font-display text-2xl font-semibold leading-tight sm:text-3xl">
-                {MAIN.name} Branch
+                {MAIN.name}
               </h3>
               <p className="mt-2 flex items-start gap-2 text-sm text-ink-300 sm:text-base">
                 <MapPin size={16} className="mt-0.5 flex-none text-accent-400" />
@@ -114,32 +96,32 @@ export function Branches() {
             </div>
           </a>
 
-          {/* Secondary branches — 2-col list on tablet+ */}
-          <ul className="grid gap-3 sm:grid-cols-2">
+          {/* Secondary branches */}
+          <ul className="grid gap-3">
             {REST.map((b) => (
               <li key={b.name}>
                 <a
                   href={b.map}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative flex h-full flex-col justify-between rounded-2xl border border-ink-200 bg-white p-5 transition hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-soft"
+                  className="group relative flex h-full flex-col justify-between rounded-2xl border border-ink-200 bg-white p-6 transition hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-soft sm:p-7"
                 >
                   <div>
-                    <span className="text-[10px] font-semibold uppercase tracking-wider text-brand-700">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-brand-700">
                       {b.note}
                     </span>
-                    <h4 className="mt-1 font-display text-base font-semibold text-ink-900">
-                      {b.name} Branch
-                    </h4>
-                    <p className="mt-1.5 flex items-start gap-1.5 text-xs text-ink-600">
-                      <MapPin size={12} className="mt-0.5 flex-none text-ink-400" />
+                    <h3 className="mt-1 font-display text-xl font-semibold text-ink-900 sm:text-2xl">
+                      {b.name}
+                    </h3>
+                    <p className="mt-2 flex items-start gap-2 text-sm text-ink-600 leading-relaxed">
+                      <MapPin size={14} className="mt-0.5 flex-none text-ink-400" />
                       {b.area}
                     </p>
                   </div>
 
-                  <div className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-brand-700 transition-all group-hover:gap-2">
-                    Directions
-                    <ArrowUpRight size={12} />
+                  <div className="mt-6 inline-flex items-center gap-1.5 self-start rounded-full bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-700 transition-all group-hover:gap-2.5">
+                    Get directions
+                    <ArrowUpRight size={14} />
                   </div>
                 </a>
               </li>

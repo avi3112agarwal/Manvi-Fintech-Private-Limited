@@ -44,9 +44,9 @@ const stats: Stat[] = [
   },
   {
     icon: MapPin,
-    value: 5,
-    label: "Surat Branches",
-    sub: "Always close to you",
+    value: 2,
+    label: "Surat Offices",
+    sub: "Main + Sachin · close to you",
   },
 ];
 

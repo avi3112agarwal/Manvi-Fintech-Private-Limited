@@ -9,7 +9,7 @@ export function WhatsAppButton() {
   );
   return (
     <motion.a
-      href={`https://wa.me/919876543210?text=${text}`}
+      href={`https://wa.me/919016634710?text=${text}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"

@@ -23,7 +23,7 @@ const orgSchema = {
   description:
     "Manvi Fintech Private Limited helps individuals, professionals and businesses secure loan solutions through India's leading banks and financial institutions.",
   email: "info@manvifintech.com",
-  telephone: "+91-9876543210",
+  telephone: "+91-9016634710",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Ghod Dod Road",

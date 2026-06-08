@@ -63,8 +63,8 @@ export function Contact() {
               <ContactItem
                 icon={Phone}
                 label="Call us"
-                value="+91 98765 43210"
-                href="tel:+919876543210"
+                value="+91 90166 34710"
+                href="tel:+919016634710"
               />
               <div className="my-5 h-px bg-ink-100" />
               <ContactItem
@@ -77,7 +77,7 @@ export function Contact() {
               <ContactItem
                 icon={MapPin}
                 label="Main office"
-                value="Ghod Dod Road, Surat, Gujarat"
+                value="L.G. 44-45, Westfield Complex, Opp. Sankalp Shopping Center, Surat"
               />
 
               <div className="mt-8 rounded-xl border border-brand-100 bg-brand-50/50 p-4">

@@ -222,9 +222,7 @@ export function EMICalculator() {
                   onChange={setTenure}
                   display={`${tenure} months · ${(tenure / 12).toFixed(1)} yrs`}
                   ticks={[
-                    { label: "3 yr", value: 36 },
                     { label: "5 yr", value: 60 },
-                    { label: "7 yr", value: 84 },
                     { label: "10 yr", value: 120 },
                     { label: "15 yr", value: 180 },
                     { label: "30 yr", value: 360 },

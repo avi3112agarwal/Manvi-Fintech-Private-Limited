@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Calculator, CheckCircle2, FileDown, Sparkles } from "lucide-react";
 
 /**
@@ -53,10 +50,8 @@ export function HeroIllustration() {
       </svg>
 
       {/* MAIN CARD: EMI mock */}
-      <motion.div
-        animate={{ y: [0, -6, 0] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute left-[6%] right-[6%] top-[14%] rounded-2xl border border-ink-200/80 bg-white p-5 shadow-[0_24px_60px_-24px_rgba(11,31,58,0.20)] sm:p-6"
+      <div
+        className="hero-float absolute left-[6%] right-[6%] top-[14%] rounded-2xl border border-ink-200/80 bg-white p-5 shadow-[0_24px_60px_-24px_rgba(11,31,58,0.20)] motion-reduce:animate-none sm:p-6"
       >
         {/* Card header */}
         <div className="flex items-center justify-between">
@@ -125,18 +120,12 @@ export function HeroIllustration() {
             ₹34,90,238
           </span>
         </div>
-      </motion.div>
+      </div>
 
       {/* FLOATING: Best rate matched (top-right) */}
-      <motion.div
-        animate={{ y: [0, -8, 0] }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 0.4,
-        }}
-        className="absolute right-[2%] top-[3%] flex items-center gap-3 rounded-2xl bg-ink-900 px-4 py-3 shadow-[0_20px_40px_-20px_rgba(11,31,58,0.50)]"
+      <div
+        className="hero-float absolute right-[2%] top-[3%] flex items-center gap-3 rounded-2xl bg-ink-900 px-4 py-3 shadow-[0_20px_40px_-20px_rgba(11,31,58,0.50)] motion-reduce:animate-none"
+        style={{ animationDuration: "6s", animationDelay: "0.4s" }}
       >
         <div className="grid h-9 w-9 flex-none place-items-center rounded-full bg-brand-gradient">
           <CheckCircle2 size={16} className="text-white" />
@@ -152,18 +141,12 @@ export function HeroIllustration() {
             0.4% lower
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* FLOATING: Sanctioned card (bottom-left) — hide on mobile to avoid overlap */}
-      <motion.div
-        animate={{ y: [0, 6, 0] }}
-        transition={{
-          duration: 7.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 0.8,
-        }}
-        className="absolute left-[-2%] bottom-[3%] hidden w-[58%] rounded-2xl border border-ink-200/80 bg-white p-4 shadow-[0_20px_40px_-20px_rgba(11,31,58,0.30)] sm:block"
+      <div
+        className="hero-float absolute left-[-2%] bottom-[3%] hidden w-[58%] rounded-2xl border border-ink-200/80 bg-white p-4 shadow-[0_20px_40px_-20px_rgba(11,31,58,0.30)] motion-reduce:animate-none sm:block"
+        style={{ animationDuration: "7.5s", animationDelay: "0.8s" }}
       >
         <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-emerald-700">
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
@@ -178,18 +161,12 @@ export function HeroIllustration() {
         <div className="mt-1 text-[10px] text-ink-500">
           Disbursed in 48 hours
         </div>
-      </motion.div>
+      </div>
 
       {/* FLOATING: Schedule download (bottom-right) — hide on mobile */}
-      <motion.div
-        animate={{ y: [0, -5, 0] }}
-        transition={{
-          duration: 6.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1.2,
-        }}
-        className="absolute right-[-2%] bottom-[10%] hidden w-[44%] rounded-2xl border border-ink-200/80 bg-white p-4 shadow-[0_20px_40px_-20px_rgba(11,31,58,0.30)] sm:block"
+      <div
+        className="hero-float absolute right-[-2%] bottom-[10%] hidden w-[44%] rounded-2xl border border-ink-200/80 bg-white p-4 shadow-[0_20px_40px_-20px_rgba(11,31,58,0.30)] motion-reduce:animate-none sm:block"
+        style={{ animationDuration: "6.5s", animationDelay: "1.2s" }}
       >
         <div className="flex items-center gap-2.5">
           <div className="grid h-9 w-9 flex-none place-items-center rounded-lg bg-brand-50 text-brand-700">
@@ -206,23 +183,18 @@ export function HeroIllustration() {
           <div className="h-1.5 w-full rounded-full bg-ink-100" />
           <div className="h-1.5 w-2/3 rounded-full bg-ink-100" />
         </div>
-      </motion.div>
+      </div>
 
       {/* FLOATING: Sparkle badge (top-left) */}
-      <motion.div
-        animate={{ y: [0, -4, 0] }}
-        transition={{
-          duration: 5.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute left-[-2%] top-[8%] flex items-center gap-2 rounded-full bg-white px-3 py-1.5 shadow-[0_10px_25px_-10px_rgba(11,31,58,0.30)] ring-1 ring-ink-200"
+      <div
+        className="hero-float absolute left-[-2%] top-[8%] flex items-center gap-2 rounded-full bg-white px-3 py-1.5 shadow-[0_10px_25px_-10px_rgba(11,31,58,0.30)] ring-1 ring-ink-200 motion-reduce:animate-none"
+        style={{ animationDuration: "5.5s" }}
       >
         <Sparkles size={12} className="text-amber-500" />
         <span className="text-[10px] font-semibold uppercase tracking-wider text-ink-700">
           25+ lenders
         </span>
-      </motion.div>
+      </div>
     </div>
   );
 }

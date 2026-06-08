@@ -17,7 +17,7 @@ const items = [
   {
     icon: MapPin,
     title: "Multiple Branches Across Surat",
-    sub: "Ghod Dod (Main) · Ring Road · Sachin · Parvat Patiya · Hoziwala",
+    sub: "Westfield Complex (Main) · GIDC Sachin",
   },
   {
     icon: Zap,

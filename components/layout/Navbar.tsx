@@ -67,7 +67,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-2">
-          <Button variant="ghost" size="sm" href="tel:+919876543210">
+          <Button variant="ghost" size="sm" href="tel:+919016634710">
             Call us
           </Button>
           <Button size="sm" href="#contact">

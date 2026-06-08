@@ -68,6 +68,16 @@ body {
       radial-gradient(circle at 1px 1px, rgba(15, 23, 42, 0.04) 1px, transparent 0);
     background-size: 22px 22px;
   }
+
+  /* Lightweight CSS float — avoids framer-motion overhead on hero illustration. */
+  @keyframes hero-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  .hero-float {
+    animation: hero-float 7s ease-in-out infinite;
+    will-change: transform;
+  }
 }
 
 /* Range slider */
