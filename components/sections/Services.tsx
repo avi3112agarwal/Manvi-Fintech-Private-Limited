@@ -21,14 +21,22 @@ const services = [
   {
     icon: Briefcase,
     title: "Unsecured Business Loan",
-    desc: "Collateral-free funding to grow your business and capture opportunities.",
-    benefits: ["Up to ₹5 Cr", "Tenure up to 7 years", "No collateral required"],
+    desc: "Collateral-free funding to grow your business — no upper cap on loan amount.",
+    benefits: [
+      "Lower interest rates",
+      "NIL foreclosure charges",
+      "No maximum loan amount",
+    ],
   },
   {
     icon: Landmark,
     title: "Loan Against Property",
     desc: "Unlock the value of your residential or commercial property without selling.",
-    benefits: ["Up to ₹10 Cr", "Lowest interest rates", "Long tenure"],
+    benefits: [
+      "Lower interest rates",
+      "NIL foreclosure charges",
+      "No maximum loan amount",
+    ],
   },
   {
     icon: Banknote,
@@ -39,8 +47,8 @@ const services = [
   {
     icon: Cog,
     title: "Machinery Loan",
-    desc: "Finance new or used equipment and machinery for business expansion.",
-    benefits: ["Up to 90% funding", "CGTMSE schemes", "Sector-specific"],
+    desc: "Finance new and old machines or equipment for business expansion.",
+    benefits: ["New & old machines", "CGTMSE-backed schemes", "Up to 90% funding"],
   },
   {
     icon: Factory,
@@ -50,9 +58,13 @@ const services = [
   },
   {
     icon: Car,
-    title: "Car Loan",
-    desc: "Quick approvals and attractive financing for new and pre-owned cars.",
-    benefits: ["Up to 100% on-road", "Low interest rates", "Instant approval"],
+    title: "Car Loan — New & Used",
+    desc: "Quick approvals for new cars as well as used-car finance, with attractive rates.",
+    benefits: [
+      "New car loans",
+      "Used car loans",
+      "Up to 100% on-road · low interest",
+    ],
   },
 ];
 

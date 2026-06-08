@@ -154,7 +154,7 @@ export function HeroIllustration() {
         </div>
       </motion.div>
 
-      {/* FLOATING: Sanctioned card (bottom-left) */}
+      {/* FLOATING: Sanctioned card (bottom-left) — hide on mobile to avoid overlap */}
       <motion.div
         animate={{ y: [0, 6, 0] }}
         transition={{
@@ -163,7 +163,7 @@ export function HeroIllustration() {
           ease: "easeInOut",
           delay: 0.8,
         }}
-        className="absolute left-[-2%] bottom-[3%] w-[58%] rounded-2xl border border-ink-200/80 bg-white p-4 shadow-[0_20px_40px_-20px_rgba(11,31,58,0.30)]"
+        className="absolute left-[-2%] bottom-[3%] hidden w-[58%] rounded-2xl border border-ink-200/80 bg-white p-4 shadow-[0_20px_40px_-20px_rgba(11,31,58,0.30)] sm:block"
       >
         <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-emerald-700">
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
@@ -180,7 +180,7 @@ export function HeroIllustration() {
         </div>
       </motion.div>
 
-      {/* FLOATING: Schedule download (bottom-right) */}
+      {/* FLOATING: Schedule download (bottom-right) — hide on mobile */}
       <motion.div
         animate={{ y: [0, -5, 0] }}
         transition={{
@@ -189,7 +189,7 @@ export function HeroIllustration() {
           ease: "easeInOut",
           delay: 1.2,
         }}
-        className="absolute right-[-2%] bottom-[10%] w-[44%] rounded-2xl border border-ink-200/80 bg-white p-4 shadow-[0_20px_40px_-20px_rgba(11,31,58,0.30)]"
+        className="absolute right-[-2%] bottom-[10%] hidden w-[44%] rounded-2xl border border-ink-200/80 bg-white p-4 shadow-[0_20px_40px_-20px_rgba(11,31,58,0.30)] sm:block"
       >
         <div className="flex items-center gap-2.5">
           <div className="grid h-9 w-9 flex-none place-items-center rounded-lg bg-brand-50 text-brand-700">
@@ -220,7 +220,7 @@ export function HeroIllustration() {
       >
         <Sparkles size={12} className="text-amber-500" />
         <span className="text-[10px] font-semibold uppercase tracking-wider text-ink-700">
-          17+ lenders
+          25+ lenders
         </span>
       </motion.div>
     </div>

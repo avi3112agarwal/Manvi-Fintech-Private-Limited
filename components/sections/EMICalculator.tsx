@@ -657,18 +657,17 @@ function AmortizationTable({
     );
   };
 
+  const totalEmi = rows.reduce((s, r) => s + r.emi, 0);
+  const totalPrincipal = rows.reduce((s, r) => s + r.principal, 0);
+  const totalInterest = rows.reduce((s, r) => s + r.interest, 0);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5 }}
-      className="mt-10 overflow-hidden rounded-2xl border border-ink-200 bg-white shadow-soft"
-    >
+    <div className="mt-10 overflow-hidden rounded-2xl border border-ink-200 bg-white shadow-soft">
+      {/* Header */}
       <div className="flex flex-col gap-4 border-b border-ink-100 p-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h3 className="font-display text-lg font-semibold text-ink-900">
-            Amortization Schedule
+            Repayment Schedule
           </h3>
           <p className="mt-1 text-xs text-ink-500">
             Month-wise EMI breakdown · {rows.length} months · reducing balance
@@ -676,7 +675,7 @@ function AmortizationTable({
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <label className="relative">
+          <label className="relative flex-1 sm:flex-none">
             <Search
               size={14}
               className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-400"
@@ -684,8 +683,8 @@ function AmortizationTable({
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder="Search month, amount…"
-              className="h-9 w-48 rounded-full border border-ink-200 bg-white pl-8 pr-3 text-xs text-ink-900 placeholder:text-ink-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/15"
+              placeholder="Search…"
+              className="h-9 w-full rounded-full border border-ink-200 bg-white pl-8 pr-3 text-xs text-ink-900 placeholder:text-ink-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/15 sm:w-48"
             />
           </label>
           <button
@@ -703,7 +702,82 @@ function AmortizationTable({
         </div>
       </div>
 
-      <div className="overflow-x-auto">
+      {/* Summary strip — quick totals always visible */}
+      <div className="grid grid-cols-3 gap-px border-b border-ink-100 bg-ink-100">
+        <SummaryStat label="Total EMI paid" value={fmtCompact(totalEmi)} tone="ink" />
+        <SummaryStat
+          label="Principal"
+          value={fmtCompact(totalPrincipal)}
+          tone="brand"
+        />
+        <SummaryStat
+          label="Interest"
+          value={fmtCompact(totalInterest)}
+          tone="gold"
+        />
+      </div>
+
+      {/* Mobile: card list */}
+      <ul className="divide-y divide-ink-100 sm:hidden">
+        {view.length === 0 ? (
+          <li className="px-5 py-10 text-center text-sm text-ink-500">
+            No matching months
+          </li>
+        ) : (
+          view.map((r) => {
+            const principalPct = (r.principal / r.emi) * 100;
+            return (
+              <li key={r.month} className="px-5 py-4">
+                <div className="flex items-baseline justify-between">
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-display text-base font-semibold text-ink-900">
+                      {monthLabel(r.month)}
+                    </span>
+                    <span className="text-[11px] text-ink-500">EMI</span>
+                  </div>
+                  <span className="font-display text-base font-bold text-ink-900 tabular-nums">
+                    {fmtINR(r.emi)}
+                  </span>
+                </div>
+
+                {/* Principal vs Interest split */}
+                <div className="mt-3 grid grid-cols-2 gap-3 text-[11px]">
+                  <div>
+                    <div className="text-ink-500">Principal</div>
+                    <div className="mt-0.5 font-semibold text-brand-700 tabular-nums">
+                      {fmtINR(r.principal)}
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-ink-500">Interest</div>
+                    <div className="mt-0.5 font-semibold text-amber-700 tabular-nums">
+                      {fmtINR(r.interest)}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Visual principal/interest bar */}
+                <div className="mt-2 flex h-1.5 overflow-hidden rounded-full bg-amber-100">
+                  <div
+                    className="h-full bg-gradient-to-r from-accent-400 to-brand-700"
+                    style={{ width: `${principalPct}%` }}
+                  />
+                </div>
+
+                <div className="mt-3 flex items-center justify-between border-t border-ink-100 pt-2 text-[11px]">
+                  <span className="text-ink-500">Outstanding</span>
+                  <span className="font-display font-bold text-ink-900 tabular-nums">
+                    {fmtINR(r.balance)}
+                  </span>
+                </div>
+              </li>
+            );
+          })
+        )}
+      </ul>
+
+      {/* Desktop: table */}
+      <div className="hidden overflow-x-auto sm:block">
         <table className="w-full text-sm">
           <thead>
             <tr className="bg-ink-50/60 text-left text-[11px] font-semibold uppercase tracking-wider text-ink-500">
@@ -711,6 +785,7 @@ function AmortizationTable({
               <th className="px-5 py-3 text-right">EMI</th>
               <th className="px-5 py-3 text-right">Principal</th>
               <th className="px-5 py-3 text-right">Interest</th>
+              <th className="px-5 py-3">Split</th>
               <th className="px-5 py-3 text-right">Outstanding</th>
             </tr>
           </thead>
@@ -718,37 +793,52 @@ function AmortizationTable({
             {view.length === 0 ? (
               <tr>
                 <td
-                  colSpan={5}
+                  colSpan={6}
                   className="px-5 py-10 text-center text-sm text-ink-500"
                 >
                   No matching months
                 </td>
               </tr>
             ) : (
-              view.map((r) => (
-                <tr key={r.month} className="hover:bg-ink-50/60">
-                  <td className="px-5 py-3 text-ink-900 font-medium">
-                    {monthLabel(r.month)}
-                  </td>
-                  <td className="px-5 py-3 text-right">{fmtINR(r.emi)}</td>
-                  <td className="px-5 py-3 text-right text-brand-700 font-medium">
-                    {fmtINR(r.principal)}
-                  </td>
-                  <td className="px-5 py-3 text-right text-amber-700 font-medium">
-                    {fmtINR(r.interest)}
-                  </td>
-                  <td className="px-5 py-3 text-right text-ink-900 font-semibold">
-                    {fmtINR(r.balance)}
-                  </td>
-                </tr>
-              ))
+              view.map((r) => {
+                const principalPct = (r.principal / r.emi) * 100;
+                return (
+                  <tr key={r.month} className="hover:bg-ink-50/60">
+                    <td className="px-5 py-3 text-ink-900 font-medium">
+                      {monthLabel(r.month)}
+                    </td>
+                    <td className="px-5 py-3 text-right">{fmtINR(r.emi)}</td>
+                    <td className="px-5 py-3 text-right text-brand-700 font-medium">
+                      {fmtINR(r.principal)}
+                    </td>
+                    <td className="px-5 py-3 text-right text-amber-700 font-medium">
+                      {fmtINR(r.interest)}
+                    </td>
+                    <td className="px-5 py-3">
+                      <div
+                        className="h-1.5 w-28 overflow-hidden rounded-full bg-amber-100"
+                        title={`${principalPct.toFixed(0)}% principal`}
+                      >
+                        <div
+                          className="h-full bg-gradient-to-r from-accent-400 to-brand-700"
+                          style={{ width: `${principalPct}%` }}
+                        />
+                      </div>
+                    </td>
+                    <td className="px-5 py-3 text-right text-ink-900 font-semibold">
+                      {fmtINR(r.balance)}
+                    </td>
+                  </tr>
+                );
+              })
             )}
           </tbody>
         </table>
       </div>
 
-      <div className="flex items-center justify-between gap-3 border-t border-ink-100 p-4">
-        <div className="text-xs text-ink-500">
+      {/* Pagination */}
+      <div className="flex flex-col items-stretch gap-3 border-t border-ink-100 p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="text-center text-xs text-ink-500 sm:text-left">
           Showing{" "}
           <span className="font-medium text-ink-900">
             {view.length === 0 ? 0 : start + 1}
@@ -757,7 +847,7 @@ function AmortizationTable({
           <span className="font-medium text-ink-900">{start + view.length}</span>{" "}
           of <span className="font-medium text-ink-900">{filtered.length}</span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-center gap-2">
           <button
             onClick={() => setPage((p) => Math.max(1, p - 1))}
             disabled={page === 1}
@@ -780,7 +870,33 @@ function AmortizationTable({
           </button>
         </div>
       </div>
-    </motion.div>
+    </div>
+  );
+}
+
+function SummaryStat({
+  label,
+  value,
+  tone,
+}: {
+  label: string;
+  value: string;
+  tone: "ink" | "brand" | "gold";
+}) {
+  const colors = {
+    ink: "text-ink-900",
+    brand: "text-brand-700",
+    gold: "text-amber-700",
+  };
+  return (
+    <div className="bg-white px-4 py-3 text-center sm:text-left">
+      <div className="text-[10px] font-semibold uppercase tracking-wider text-ink-500">
+        {label}
+      </div>
+      <div className={`mt-0.5 font-display text-sm font-bold tabular-nums sm:text-base ${colors[tone]}`}>
+        {value}
+      </div>
+    </div>
   );
 }
 
@@ -863,10 +979,13 @@ function EMILeadCapture({
               />
               <MiniSelect
                 icon={Banknote}
-                label="Loan requirement"
-                defaultValue={`${loanType} · ${fmtCompact(amount)}`}
+                label="Loan type"
+                defaultValue={loanType}
                 options={LOAN_TYPES.map((l) => l.label)}
               />
+              <p className="-mt-1 px-1 text-[11px] text-ink-500">
+                Pre-filled from your calculator above ({fmtCompact(amount)}). Change anytime.
+              </p>
               <Button size="md" className="w-full">
                 Get free consultation
                 <ArrowRight size={16} />
@@ -931,7 +1050,6 @@ function MiniSelect({
           defaultValue={defaultValue}
           className="w-full appearance-none rounded-xl border border-ink-200 bg-white py-2.5 pl-9 pr-9 text-sm text-ink-900 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/15"
         >
-          <option value={defaultValue}>{defaultValue}</option>
           {options.map((o) => (
             <option key={o}>{o}</option>
           ))}
