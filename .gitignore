@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# Testing
+/coverage
+
+# Next.js
+.next/
+out/
+dist/
+*.tsbuildinfo
+
+# Production
+build/
+
+# Misc
+.DS_Store
+*.pem
+
+# Debug
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local env files
+.env*
+!.env.example
+
+# Vercel
+.vercel
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+
+# Python helper-script artefacts (kept outside the deployed bundle)
+scripts/__pycache__/
+*.pyc
+
+# Claude harness scratch
+.claude/
