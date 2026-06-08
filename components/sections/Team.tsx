@@ -1,4 +1,4 @@
-import { Linkedin, Mail, Star } from "lucide-react";
+import { Mail, Star } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
@@ -182,13 +182,6 @@ function PersonCard({ person, featured = false }: { person: Person; featured?: b
       </p>
 
       <div className="mt-4 flex items-center gap-2">
-        <a
-          href="#"
-          aria-label={`${person.name} LinkedIn`}
-          className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-ink-200 text-ink-600 transition hover:border-brand-200 hover:bg-brand-50 hover:text-brand-700"
-        >
-          <Linkedin size={14} />
-        </a>
         <a
           href="#contact"
           aria-label={`Email ${person.name}`}

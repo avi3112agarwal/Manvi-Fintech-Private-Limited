@@ -21,21 +21,21 @@ const services = [
   {
     icon: Briefcase,
     title: "Unsecured Business Loan",
-    desc: "Collateral-free funding to grow your business — no upper cap on loan amount.",
+    desc: "Get the funds your business needs to grow, expand, or manage daily operations.",
     benefits: [
-      "Lower interest rates",
-      "NIL foreclosure charges",
-      "No maximum loan amount",
+      "Maximum loan eligibility",
+      "Quick approval",
+      "Easy documentation",
     ],
   },
   {
     icon: Landmark,
     title: "Loan Against Property",
-    desc: "Unlock the value of your residential or commercial property without selling.",
+    desc: "Use the value of your property to get funds without selling it.",
     benefits: [
       "Lower interest rates",
-      "NIL foreclosure charges",
-      "No maximum loan amount",
+      "Maximum loan eligibility",
+      "Flexible repayment options",
     ],
   },
   {

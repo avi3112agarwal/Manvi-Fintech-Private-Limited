@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
-import { Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 const columns = [
   {
@@ -111,15 +111,6 @@ export function Footer() {
             rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <a
-              href="#"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-ink-800 text-ink-300 hover:bg-brand-700 hover:text-white transition"
-            >
-              <Linkedin size={16} />
-            </a>
             <Link href="#" className="text-xs text-ink-500 hover:text-ink-300">
               Privacy
             </Link>
