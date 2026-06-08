@@ -40,8 +40,8 @@ const steps = [
 export function Process() {
   return (
     <section id="process" className="section bg-ink-900 text-white relative overflow-hidden">
-      <div className="pointer-events-none absolute -top-32 -right-32 h-[420px] w-[420px] rounded-full bg-brand-700/30 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-32 -left-32 h-[420px] w-[420px] rounded-full bg-accent-500/20 blur-3xl" />
+      <div className="pointer-events-none absolute -top-32 -right-32 hidden h-[420px] w-[420px] rounded-full bg-brand-700/30 blur-3xl lg:block" />
+      <div className="pointer-events-none absolute -bottom-32 -left-32 hidden h-[420px] w-[420px] rounded-full bg-accent-500/20 blur-3xl lg:block" />
 
       <Container className="relative">
         <SectionHeading

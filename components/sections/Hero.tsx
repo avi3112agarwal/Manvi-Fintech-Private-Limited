@@ -9,11 +9,11 @@ import { HeroIllustration } from "@/components/illustrations/HeroIllustration";
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
-      {/* Background flourishes */}
+      {/* Background flourishes — heavy blur blobs only on desktop */}
       <div className="pointer-events-none absolute inset-0 bg-grid-fade" />
       <div className="pointer-events-none absolute inset-0 bg-noise opacity-50" />
-      <div className="pointer-events-none absolute -top-40 -right-40 h-[480px] w-[480px] rounded-full bg-accent-500/10 blur-3xl animate-blob-drift" />
-      <div className="pointer-events-none absolute -bottom-32 -left-32 h-[420px] w-[420px] rounded-full bg-brand-500/10 blur-3xl animate-blob-drift" />
+      <div className="pointer-events-none absolute -top-40 -right-40 hidden h-[480px] w-[480px] rounded-full bg-accent-500/10 blur-3xl motion-safe:animate-blob-drift lg:block" />
+      <div className="pointer-events-none absolute -bottom-32 -left-32 hidden h-[420px] w-[420px] rounded-full bg-brand-500/10 blur-3xl motion-safe:animate-blob-drift lg:block" />
 
       <Container className="relative pt-14 pb-20 sm:pt-20 sm:pb-28 lg:pt-28 lg:pb-32">
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
@@ -73,7 +73,7 @@ export function Hero() {
             >
               <div className="bg-white px-5 py-4">
                 <div className="font-display text-2xl font-bold tabular-nums text-ink-900">
-                  15<span className="text-brand-700">+</span>
+                  25<span className="text-brand-700">+</span>
                 </div>
                 <div className="mt-1 text-[11px] font-medium uppercase tracking-wider text-ink-500">
                   Banking partners

@@ -24,8 +24,8 @@ export function FinalCTA() {
           className="relative overflow-hidden rounded-3xl bg-ink-900 px-6 py-14 text-white shadow-glow sm:px-12 sm:py-20"
         >
           {/* Decorative */}
-          <div className="pointer-events-none absolute -top-32 -right-32 h-[460px] w-[460px] rounded-full bg-brand-700/30 blur-3xl animate-blob-drift" />
-          <div className="pointer-events-none absolute -bottom-32 -left-32 h-[420px] w-[420px] rounded-full bg-accent-500/25 blur-3xl animate-blob-drift" />
+          <div className="pointer-events-none absolute -top-32 -right-32 hidden h-[460px] w-[460px] rounded-full bg-brand-700/30 blur-3xl motion-safe:animate-blob-drift lg:block" />
+          <div className="pointer-events-none absolute -bottom-32 -left-32 hidden h-[420px] w-[420px] rounded-full bg-accent-500/25 blur-3xl motion-safe:animate-blob-drift lg:block" />
           <div className="pointer-events-none absolute inset-0 bg-noise opacity-15" />
           <div
             className="pointer-events-none absolute inset-0 opacity-[0.05]"

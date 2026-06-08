@@ -79,11 +79,11 @@ export function Stats() {
       id="journey"
       className="relative overflow-hidden border-y border-ink-100 bg-gradient-to-br from-ink-900 via-brand-900 to-brand-800"
     >
-      <div className="pointer-events-none absolute -top-32 -left-32 h-96 w-96 rounded-full bg-accent-500/30 blur-3xl animate-blob-drift" />
-      <div className="pointer-events-none absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-brand-400/30 blur-3xl animate-blob-drift" />
+      <div className="pointer-events-none absolute -top-32 -left-32 hidden h-96 w-96 rounded-full bg-accent-500/30 blur-3xl motion-safe:animate-blob-drift lg:block" />
+      <div className="pointer-events-none absolute -bottom-32 -right-32 hidden h-96 w-96 rounded-full bg-brand-400/30 blur-3xl motion-safe:animate-blob-drift lg:block" />
       <div className="pointer-events-none absolute inset-0 bg-noise opacity-20" />
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.07]"
+        className="pointer-events-none absolute inset-0 hidden opacity-[0.07] sm:block"
         style={{
           backgroundImage:
             "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",

@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 
 /**
@@ -62,12 +61,12 @@ export function Partners() {
       id="partners"
       className="relative overflow-hidden border-y border-ink-100 bg-gradient-to-br from-ink-900 via-brand-900 to-brand-800"
     >
-      {/* Ambient lights */}
-      <div className="pointer-events-none absolute -top-40 -left-32 h-[28rem] w-[28rem] rounded-full bg-accent-500/20 blur-3xl animate-blob-drift" />
-      <div className="pointer-events-none absolute -bottom-40 -right-32 h-[28rem] w-[28rem] rounded-full bg-brand-400/25 blur-3xl animate-blob-drift" />
+      {/* Ambient lights — hidden on small screens (blur-3xl + animation is expensive on mobile GPUs) */}
+      <div className="pointer-events-none absolute -top-40 -left-32 hidden h-[28rem] w-[28rem] rounded-full bg-accent-500/20 blur-3xl motion-safe:animate-blob-drift lg:block" />
+      <div className="pointer-events-none absolute -bottom-40 -right-32 hidden h-[28rem] w-[28rem] rounded-full bg-brand-400/25 blur-3xl motion-safe:animate-blob-drift lg:block" />
       <div className="pointer-events-none absolute inset-0 bg-noise opacity-20" />
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.06]"
+        className="pointer-events-none absolute inset-0 hidden opacity-[0.06] sm:block"
         style={{
           backgroundImage:
             "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
@@ -75,14 +74,14 @@ export function Partners() {
         }}
       />
 
-      <Container className="relative py-20 lg:py-24">
+      <Container className="relative py-14 sm:py-20 lg:py-24">
         {/* Heading */}
-        <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-end">
+        <div className="grid gap-6 lg:grid-cols-[1.1fr_1fr] lg:items-end lg:gap-8">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-100 backdrop-blur-sm">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-100">
               Banking partners
             </span>
-            <h2 className="mt-5 font-display text-3xl font-semibold leading-[1.1] text-white sm:text-4xl lg:text-5xl">
+            <h2 className="mt-5 font-display text-2xl font-semibold leading-[1.15] text-white sm:text-3xl md:text-4xl lg:text-5xl">
               Backed by India&apos;s{" "}
               <span className="bg-gradient-to-r from-accent-400 to-brand-300 bg-clip-text text-transparent">
                 most trusted lenders
@@ -90,7 +89,7 @@ export function Partners() {
             </h2>
           </div>
           <div className="lg:pl-6">
-            <p className="text-base leading-relaxed text-brand-100/80">
+            <p className="text-sm leading-relaxed text-brand-100/80 sm:text-base">
               Direct relationships with{" "}
               <span className="font-semibold text-white">
                 {BANKS.length}+ leading banks and NBFCs
@@ -102,18 +101,12 @@ export function Partners() {
         </div>
 
         {/* Marquee rows */}
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6 }}
-          className="relative mt-14 space-y-5"
-        >
-          <Marquee banks={ROW_A} reverse={false} duration={55} />
-          <Marquee banks={ROW_B} reverse duration={65} />
-        </motion.div>
+        <div className="relative mt-10 space-y-4 sm:mt-14 sm:space-y-5">
+          <Marquee banks={ROW_A} reverse={false} duration={35} />
+          <Marquee banks={ROW_B} reverse duration={45} />
+        </div>
 
-        <p className="mt-12 text-center text-xs text-brand-100/60">
+        <p className="mt-10 text-center text-[11px] text-brand-100/60 sm:mt-12 sm:text-xs">
           Logos and trade marks are the property of their respective owners and
           are used here for representation only.
         </p>
@@ -135,10 +128,12 @@ function Marquee({
   return (
     <div className="group/marquee relative overflow-hidden">
       <div
-        className="flex w-max gap-5 animate-marquee group-hover/marquee:[animation-play-state:paused]"
+        className="flex w-max gap-3 motion-safe:animate-marquee sm:gap-5 group-hover/marquee:[animation-play-state:paused] motion-reduce:animate-none"
         style={{
           animationDirection: reverse ? "reverse" : "normal",
           animationDuration: `${duration}s`,
+          willChange: "transform",
+          transform: "translateZ(0)",
         }}
       >
         {items.map((b, i) => (
@@ -162,36 +157,32 @@ function BankPill({ bank }: { bank: Bank }) {
     .toUpperCase();
 
   return (
-    <div className="group relative flex h-28 w-60 flex-none items-center justify-center overflow-hidden rounded-2xl border border-white/15 bg-white/95 px-6 py-4 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-accent-400/60 hover:bg-white hover:shadow-[0_18px_40px_-12px_rgba(96,165,250,0.55)]">
+    <div className="group relative flex h-20 w-40 flex-none items-center justify-center overflow-hidden rounded-xl border border-white/15 bg-white/95 px-4 py-3 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.45)] transition-colors hover:bg-white sm:h-28 sm:w-60 sm:rounded-2xl sm:px-6 sm:py-4">
       {showLogo ? (
-        <div className="relative h-full w-full transition-transform group-hover:scale-[1.05]">
-          <div
-            className="relative h-full w-full"
-            style={bank.scale ? { transform: `scale(${bank.scale})` } : undefined}
-          >
-            <Image
-              src={`/banks/${bank.slug}.${ext}`}
-              alt={bank.name}
-              fill
-              sizes="220px"
-              className="object-contain"
-              onError={() => setErrored(true)}
-            />
-          </div>
+        <div
+          className="relative h-full w-full"
+          style={bank.scale ? { transform: `scale(${bank.scale})` } : undefined}
+        >
+          <Image
+            src={`/banks/${bank.slug}.${ext}`}
+            alt={bank.name}
+            fill
+            sizes="(max-width: 640px) 160px, 240px"
+            className="object-contain"
+            loading="lazy"
+            onError={() => setErrored(true)}
+          />
         </div>
       ) : (
-        <div className="flex h-full w-full items-center justify-center gap-2.5">
-          <div className="grid h-9 w-9 flex-none place-items-center rounded-lg bg-ink-900 text-[11px] font-bold text-white">
+        <div className="flex h-full w-full items-center justify-center gap-2">
+          <div className="grid h-8 w-8 flex-none place-items-center rounded-lg bg-ink-900 text-[10px] font-bold text-white sm:h-9 sm:w-9 sm:text-[11px]">
             {initials}
           </div>
-          <span className="font-display text-[12px] font-semibold leading-tight text-ink-900">
+          <span className="font-display text-[11px] font-semibold leading-tight text-ink-900 sm:text-[12px]">
             {bank.name}
           </span>
         </div>
       )}
-
-      {/* Top sheen on hover */}
-      <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-accent-400/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
     </div>
   );
 }
