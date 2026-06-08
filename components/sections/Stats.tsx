@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import {
   Building2,
@@ -104,24 +104,19 @@ export function Stats() {
           </h2>
         </div>
 
-        <div className="mt-14 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
-          {stats.map((s, i) => (
-            <motion.div
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:mt-14 sm:gap-5 lg:grid-cols-4">
+          {stats.map((s) => (
+            <div
               key={s.label}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              whileHover={{ y: -4 }}
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm transition-all hover:border-accent-400/60 hover:bg-white/[0.08]"
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition-all hover:-translate-y-1 hover:border-accent-400/60 hover:bg-white/[0.08] sm:p-6"
             >
               <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-400 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
 
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-accent-300">
+              <div className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-accent-300 sm:h-10 sm:w-10">
                 <s.icon size={18} />
               </div>
 
-              <div className="mt-5 flex items-baseline gap-0.5 font-display text-4xl font-bold tabular-nums text-white sm:text-5xl">
+              <div className="mt-4 flex items-baseline gap-0.5 font-display text-3xl font-bold tabular-nums text-white sm:mt-5 sm:text-5xl">
                 {s.prefix && <span className="text-accent-400">{s.prefix}</span>}
                 <Counter to={s.value} />
                 {s.suffix && (
@@ -133,7 +128,7 @@ export function Stats() {
               <p className="mt-1 text-xs leading-relaxed text-brand-100/70">
                 {s.sub}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </Container>

@@ -1,16 +1,28 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ExternalLink, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, MapPin, Phone, Clock, Star } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
-const BRANCHES = [
+type Branch = {
+  name: string;
+  area: string;
+  note: string;
+  phone?: string;
+  hours?: string;
+  map: string;
+  main?: boolean;
+};
+
+const BRANCHES: Branch[] = [
   {
     name: "Ghod Dod Road",
-    area: "Ghod Dod Road, Surat",
+    area: "Ghod Dod Road, Surat, Gujarat",
     note: "Main office",
+    phone: "+91 98765 43210",
+    hours: "Mon–Sat · 10:00 – 19:00",
     map: "https://maps.google.com/?q=Ghod+Dod+Road+Surat",
+    main: true,
   },
   {
     name: "Ring Road",
@@ -38,6 +50,9 @@ const BRANCHES = [
   },
 ];
 
+const MAIN = BRANCHES.find((b) => b.main)!;
+const REST = BRANCHES.filter((b) => !b.main);
+
 export function Branches() {
   return (
     <section id="branches" className="section">
@@ -50,82 +65,86 @@ export function Branches() {
               <span className="text-gradient">across Surat</span>
             </>
           }
-          description="Walk in for a face-to-face consultation. Five branches, one team."
+          description="Five branches, one team. Walk in for a face-to-face consultation — or call ahead and we'll have an expert ready."
         />
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {BRANCHES.map((b, i) => (
-            <motion.a
-              key={b.name}
-              href={b.map}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.45, delay: (i % 3) * 0.06 }}
-              className="group relative overflow-hidden rounded-2xl border border-ink-200 bg-white hover:border-brand-300 hover:shadow-soft transition"
-            >
-              {/* Map preview */}
-              <div className="relative h-32 overflow-hidden border-b border-ink-100 bg-gradient-to-br from-brand-50 to-accent-500/10">
-                <div
-                  className="absolute inset-0 opacity-40"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(rgba(30,64,175,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(30,64,175,0.18) 1px, transparent 1px)",
-                    backgroundSize: "26px 26px",
-                  }}
-                />
-                <svg
-                  className="absolute inset-0 h-full w-full"
-                  viewBox="0 0 200 120"
-                  fill="none"
-                >
-                  <path
-                    d={`M-10 ${30 + (i % 3) * 10} Q 50 ${
-                      60 + (i % 2) * 20
-                    } 120 ${40 + (i % 4) * 12} T 220 ${60 + (i % 3) * 8}`}
-                    stroke="rgba(30,64,175,0.4)"
-                    strokeWidth="1.2"
-                  />
-                  <path
-                    d={`M-10 ${70 + (i % 2) * 10} Q 80 ${30} 140 ${
-                      80 + (i % 3) * 10
-                    } T 220 ${40}`}
-                    stroke="rgba(6,182,212,0.4)"
-                    strokeWidth="1"
-                  />
-                </svg>
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                  <div className="relative">
-                    <div className="absolute -inset-3 -z-10 animate-ping rounded-full bg-brand-500/30" />
-                    <div className="grid h-10 w-10 place-items-center rounded-full bg-white text-brand-700 shadow-soft">
-                      <MapPin size={16} />
-                    </div>
+        <div className="mt-10 grid gap-4 sm:mt-14 lg:grid-cols-[1.15fr_1fr] lg:gap-6">
+          {/* Featured main-office card */}
+          <a
+            href={MAIN.map}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-ink-900 p-7 text-white sm:p-8"
+          >
+            <div className="pointer-events-none absolute -right-16 -top-16 hidden h-64 w-64 rounded-full bg-brand-700/40 blur-3xl lg:block" />
+            <div className="pointer-events-none absolute -bottom-16 -left-16 hidden h-64 w-64 rounded-full bg-accent-500/20 blur-3xl lg:block" />
+
+            <div className="relative">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-accent-400/40 bg-accent-400/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-accent-300">
+                <Star size={11} className="fill-accent-300" />
+                Main office
+              </span>
+              <h3 className="mt-5 font-display text-2xl font-semibold leading-tight sm:text-3xl">
+                {MAIN.name} Branch
+              </h3>
+              <p className="mt-2 flex items-start gap-2 text-sm text-ink-300 sm:text-base">
+                <MapPin size={16} className="mt-0.5 flex-none text-accent-400" />
+                {MAIN.area}
+              </p>
+
+              <dl className="mt-7 grid gap-3 border-t border-white/10 pt-5 sm:grid-cols-2">
+                {MAIN.phone && (
+                  <div className="flex items-center gap-2.5 text-sm">
+                    <Phone size={14} className="flex-none text-accent-400" />
+                    <span className="text-ink-200">{MAIN.phone}</span>
                   </div>
-                </div>
-              </div>
+                )}
+                {MAIN.hours && (
+                  <div className="flex items-center gap-2.5 text-sm">
+                    <Clock size={14} className="flex-none text-accent-400" />
+                    <span className="text-ink-200">{MAIN.hours}</span>
+                  </div>
+                )}
+              </dl>
+            </div>
 
-              <div className="p-6">
-                <div className="text-[11px] font-semibold uppercase tracking-wider text-brand-700">
-                  {b.note}
-                </div>
-                <h3 className="mt-1 font-display text-lg font-semibold text-ink-900">
-                  {b.name} Branch
-                </h3>
-                <div className="mt-1 text-sm text-ink-600">{b.area}</div>
+            <div className="relative mt-8 inline-flex items-center gap-1.5 self-start rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink-900 transition group-hover:gap-2.5">
+              Get directions
+              <ArrowUpRight size={14} />
+            </div>
+          </a>
 
-                <div className="mt-4 flex items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
-                    <ExternalLink size={12} /> Maps
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-ink-200 px-3 py-1 text-xs font-semibold text-ink-700">
-                    <Phone size={12} /> Call
-                  </span>
-                </div>
-              </div>
-            </motion.a>
-          ))}
+          {/* Secondary branches — 2-col list on tablet+ */}
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {REST.map((b) => (
+              <li key={b.name}>
+                <a
+                  href={b.map}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative flex h-full flex-col justify-between rounded-2xl border border-ink-200 bg-white p-5 transition hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-soft"
+                >
+                  <div>
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-brand-700">
+                      {b.note}
+                    </span>
+                    <h4 className="mt-1 font-display text-base font-semibold text-ink-900">
+                      {b.name} Branch
+                    </h4>
+                    <p className="mt-1.5 flex items-start gap-1.5 text-xs text-ink-600">
+                      <MapPin size={12} className="mt-0.5 flex-none text-ink-400" />
+                      {b.area}
+                    </p>
+                  </div>
+
+                  <div className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-brand-700 transition-all group-hover:gap-2">
+                    Directions
+                    <ArrowUpRight size={12} />
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </Container>
     </section>

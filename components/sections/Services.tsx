@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import {
   Briefcase,
   Home,
@@ -74,27 +71,23 @@ export function Services() {
           description="From your first home loan to a multi-crore industrial acquisition — every product, matched to the right lender."
         />
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((it, i) => (
-            <motion.a
+            <a
               href="#contact"
               key={it.title}
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.45, delay: (i % 3) * 0.05 }}
-              className="group relative overflow-hidden rounded-2xl border border-ink-200 bg-white p-7 transition hover:border-brand-300 hover:shadow-soft"
+              className="group relative overflow-hidden rounded-2xl border border-ink-200 bg-white p-6 transition hover:border-brand-300 hover:shadow-soft sm:p-7"
             >
               <div className="flex items-start justify-between">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-ink-900 text-white">
-                  <it.icon size={22} />
+                <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-ink-900 text-white sm:h-12 sm:w-12">
+                  <it.icon size={20} />
                 </div>
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-ink-400">
                   0{i + 1}
                 </span>
               </div>
 
-              <h3 className="mt-6 font-display text-xl font-semibold text-ink-900">
+              <h3 className="mt-5 font-display text-lg font-semibold text-ink-900 sm:text-xl">
                 {it.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-600">
@@ -116,25 +109,19 @@ export function Services() {
               <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 transition-all group-hover:gap-2.5">
                 Apply now <ArrowRight size={14} />
               </div>
-            </motion.a>
+            </a>
           ))}
 
           {/* Inline CTA card — institutional brand-gradient block */}
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.45, delay: 0.18 }}
-            className="relative flex flex-col justify-between overflow-hidden rounded-2xl bg-ink-900 p-7 text-white"
-          >
-            <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-brand-700/40 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-16 -left-16 h-44 w-44 rounded-full bg-accent-500/20 blur-3xl" />
+          <div className="relative flex flex-col justify-between overflow-hidden rounded-2xl bg-ink-900 p-6 text-white sm:p-7">
+            <div className="pointer-events-none absolute -right-16 -top-16 hidden h-44 w-44 rounded-full bg-brand-700/40 blur-3xl lg:block" />
+            <div className="pointer-events-none absolute -bottom-16 -left-16 hidden h-44 w-44 rounded-full bg-accent-500/20 blur-3xl lg:block" />
 
             <div className="relative">
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-brand-100 backdrop-blur-sm">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-brand-100">
                 Not sure?
               </span>
-              <h3 className="mt-5 font-display text-xl font-semibold leading-tight">
+              <h3 className="mt-5 font-display text-lg font-semibold leading-tight sm:text-xl">
                 Let our experts match you with the right loan
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-ink-300">
@@ -149,7 +136,7 @@ export function Services() {
             >
               Talk to an expert <ArrowRight size={14} />
             </a>
-          </motion.div>
+          </div>
         </div>
       </Container>
     </section>

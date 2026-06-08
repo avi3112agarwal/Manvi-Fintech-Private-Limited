@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import {
   Network,
   MapPin,
@@ -49,13 +46,9 @@ export function Trust() {
     <section className="relative border-y border-ink-100 bg-ink-50/60">
       <Container className="py-16 lg:py-20">
         <div className="grid gap-px overflow-hidden rounded-2xl border border-ink-200 bg-ink-200 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map(({ icon: Icon, title, sub }, i) => (
-            <motion.div
+          {items.map(({ icon: Icon, title, sub }) => (
+            <div
               key={title}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.4, delay: (i % 3) * 0.06 }}
               className="group flex items-start gap-4 bg-white p-6 transition-colors hover:bg-brand-50/30"
             >
               <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-brand-50 text-brand-700 ring-1 ring-inset ring-brand-100 transition group-hover:bg-brand-gradient group-hover:text-white group-hover:ring-transparent">
@@ -69,7 +62,7 @@ export function Trust() {
                   {sub}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </Container>

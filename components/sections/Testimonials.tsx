@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Quote, Star } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -83,16 +80,11 @@ export function Testimonials() {
           </span>
         </div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {TESTIMONIALS.map((t, i) => (
-            <motion.div
+        <div className="mt-10 grid gap-4 sm:mt-12 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {TESTIMONIALS.map((t) => (
+            <div
               key={t.name}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.45, delay: (i % 3) * 0.06 }}
-              whileHover={{ y: -3 }}
-              className="group relative overflow-hidden rounded-2xl border border-ink-100 bg-white p-6 shadow-soft hover:border-brand-200 transition"
+              className="group relative overflow-hidden rounded-2xl border border-ink-100 bg-white p-5 shadow-soft transition hover:-translate-y-0.5 hover:border-brand-200 sm:p-6"
             >
               <Quote
                 className="absolute right-5 top-5 h-8 w-8 text-brand-50"
@@ -127,7 +119,7 @@ export function Testimonials() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </Container>

@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Linkedin, Mail } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -59,15 +56,11 @@ export function Team() {
           description="Decades of combined experience in lending, credit and customer relationships — working for you."
         />
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {TEAM.map((m, i) => (
-            <motion.div
+        <div className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3">
+          {TEAM.map((m) => (
+            <div
               key={m.name}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.45, delay: i * 0.06 }}
-              className="group relative overflow-hidden rounded-2xl border border-ink-100 bg-white p-6 hover:border-brand-200 hover:shadow-soft transition"
+              className="group relative overflow-hidden rounded-2xl border border-ink-100 bg-white p-5 hover:border-brand-200 hover:shadow-soft transition sm:p-6"
             >
               <div className="relative aspect-square overflow-hidden rounded-xl">
                 <div className="absolute inset-0 bg-brand-gradient" />
@@ -103,7 +96,7 @@ export function Team() {
                   <Mail size={14} />
                 </a>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </Container>

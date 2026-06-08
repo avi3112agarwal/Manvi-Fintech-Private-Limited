@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import {
   Network,
   Zap,
@@ -60,26 +57,22 @@ export function WhyManvi() {
           description="We're not just a broker. We're your financing partner — focused on outcomes, not commissions."
         />
 
-        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-ink-200 bg-ink-200 sm:grid-cols-2 lg:grid-cols-3">
-          {reasons.map((r, i) => (
-            <motion.div
+        <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-ink-200 bg-ink-200 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3">
+          {reasons.map((r) => (
+            <div
               key={r.title}
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.45, delay: (i % 3) * 0.06 }}
-              className="group relative bg-white p-8 transition-colors hover:bg-brand-50/30"
+              className="group relative bg-white p-6 transition-colors hover:bg-brand-50/30 sm:p-8"
             >
               <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-700 ring-1 ring-inset ring-brand-100 transition group-hover:bg-brand-gradient group-hover:text-white group-hover:ring-transparent">
                 <r.icon size={20} />
               </div>
-              <h3 className="mt-5 font-display text-lg font-semibold text-ink-900">
+              <h3 className="mt-5 font-display text-base font-semibold text-ink-900 sm:text-lg">
                 {r.title}
               </h3>
               <p className="mt-2 text-sm text-ink-600 leading-relaxed">
                 {r.desc}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </Container>
