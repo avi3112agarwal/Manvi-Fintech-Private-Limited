@@ -212,18 +212,16 @@ export function EMICalculator() {
                   ]}
                 />
                 <div className="my-7 h-px bg-ink-100" />
-                <Slider
+                <SteppedSlider
                   icon={CalendarRange}
                   label="Tenure"
                   value={tenure}
-                  min={6}
-                  max={360}
-                  step={6}
                   onChange={setTenure}
-                  display={`${tenure} months · ${(tenure / 12).toFixed(1)} yrs`}
-                  ticks={[
-                    { label: "6 mo", value: 6 },
+                  options={[
+                    { label: "3 yr", value: 36 },
                     { label: "5 yr", value: 60 },
+                    { label: "7 yr", value: 84 },
+                    { label: "10 yr", value: 120 },
                     { label: "15 yr", value: 180 },
                     { label: "30 yr", value: 360 },
                   ]}
@@ -564,6 +562,89 @@ function SelectField({
         </span>
       </span>
     </label>
+  );
+}
+
+/**
+ * Stepped slider — user can only land on one of N preset values. Each option
+ * occupies an equal visual slot under the bar, so labels are always evenly
+ * spaced and the thumb sits exactly on its label.
+ */
+function SteppedSlider({
+  icon: Icon,
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  icon: React.ElementType;
+  label: string;
+  value: number;
+  onChange: (v: number) => void;
+  options: { label: string; value: number }[];
+}) {
+  const lastIdx = options.length - 1;
+  // Snap incoming value to nearest option index.
+  const activeIdx = (() => {
+    let best = 0;
+    let bestDiff = Math.abs(options[0].value - value);
+    for (let i = 1; i < options.length; i++) {
+      const d = Math.abs(options[i].value - value);
+      if (d < bestDiff) {
+        best = i;
+        bestDiff = d;
+      }
+    }
+    return best;
+  })();
+  const pct = (activeIdx / lastIdx) * 100;
+  const active = options[activeIdx];
+  const display =
+    active.value % 12 === 0
+      ? `${active.value} months · ${active.value / 12} yrs`
+      : `${active.value} months · ${(active.value / 12).toFixed(1)} yrs`;
+
+  return (
+    <div>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2 text-ink-700">
+          <Icon size={14} />
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-ink-500">
+            {label}
+          </span>
+        </div>
+        <span className="rounded-md border border-ink-200 bg-ink-50 px-2.5 py-1 text-xs font-semibold text-ink-900 tabular-nums">
+          {display}
+        </span>
+      </div>
+      <input
+        type="range"
+        min={0}
+        max={lastIdx}
+        step={1}
+        value={activeIdx}
+        onChange={(e) => onChange(options[parseInt(e.target.value, 10)].value)}
+        className="mt-4 w-full"
+        style={{ ["--val" as never]: `${pct}%` }}
+      />
+      <div className="relative mt-2 h-3.5">
+        {options.map((o, i) => {
+          const tPct = (i / lastIdx) * 100;
+          const isActive = i === activeIdx;
+          return (
+            <span
+              key={o.label}
+              className={`absolute -translate-x-1/2 text-[10px] tabular-nums transition-colors ${
+                isActive ? "font-semibold text-brand-700" : "text-ink-400"
+              }`}
+              style={{ left: `${tPct}%` }}
+            >
+              {o.label}
+            </span>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 

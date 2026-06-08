@@ -15,8 +15,8 @@ export function Hero() {
       <div className="pointer-events-none absolute -top-40 -right-40 hidden h-[480px] w-[480px] rounded-full bg-accent-500/10 blur-3xl motion-safe:animate-blob-drift lg:block" />
       <div className="pointer-events-none absolute -bottom-32 -left-32 hidden h-[420px] w-[420px] rounded-full bg-brand-500/10 blur-3xl motion-safe:animate-blob-drift lg:block" />
 
-      <Container className="relative pt-14 pb-20 sm:pt-20 sm:pb-28 lg:pt-28 lg:pb-32">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
+      <Container className="relative pt-10 pb-14 sm:pt-14 sm:pb-20 lg:pt-16 lg:pb-20">
+        <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
           <div>
             <motion.span
               initial={{ opacity: 0, y: 8 }}
@@ -32,7 +32,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.05 }}
-              className="h-display mt-5 text-4xl leading-[1.05] sm:text-5xl lg:text-6xl"
+              className="h-display mt-4 text-[2rem] leading-[1.05] sm:text-5xl lg:text-[3.25rem]"
             >
               Funding your growth,{" "}
               <span className="text-gradient">powering your dreams.</span>
@@ -42,7 +42,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.12 }}
-              className="mt-6 max-w-xl text-lg text-ink-600 leading-relaxed"
+              className="mt-4 max-w-xl text-base text-ink-600 leading-relaxed sm:text-lg"
             >
               Helping individuals and businesses access the right financing
               solutions through trusted banking partnerships and expert
@@ -53,7 +53,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.2 }}
-              className="mt-9 flex flex-wrap items-center gap-3"
+              className="mt-6 flex flex-wrap items-center gap-3"
             >
               <Button size="lg" href="#contact">
                 Apply for loan
@@ -69,7 +69,7 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.35 }}
-              className="mt-12 grid max-w-xl grid-cols-3 gap-px overflow-hidden rounded-2xl border border-ink-200 bg-ink-200"
+              className="mt-7 grid max-w-xl grid-cols-3 gap-px overflow-hidden rounded-2xl border border-ink-200 bg-ink-200"
             >
               <div className="bg-white px-5 py-4">
                 <div className="font-display text-2xl font-bold tabular-nums text-ink-900">
